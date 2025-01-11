@@ -1,0 +1,153 @@
+:root 
+{
+    --primary-color: #4CAF50;  /* Colore principale (verde) */
+    --secondary-color: #333;    /* Colore secondario (testo) */
+    --background-color: #f4f4f4; /* Colore di sfondo */
+    --button-color: #4CAF50;    /* Colore dei bottoni */
+    --button-hover-color: #45a049; /* Colore dei bottoni al passaggio del mouse */
+    --table-header-color: #4CAF50; /* Colore intestazione tabella */
+    --table-row-hover: #e7f7e7; /* Colore di hover delle righe della tabella */
+    --footer-background: #333; /* Colore di sfondo del footer */
+    --footer-text-color: #fff; /* Colore del testo nel footer */
+}
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body 
+{
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+    padding: 20px;
+}
+
+h1 
+{
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav ul 
+{
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav ul li 
+{
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a 
+{
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover 
+{
+    color: var(--button-hover-color);
+}
+
+form 
+{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+form label 
+{
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+form select,
+form input 
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button 
+{
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-color);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover 
+{
+    background-color: var(--button-hover-color);
+}
+
+table 
+{
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+table th, table td 
+{
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th 
+{
+    background-color: var(--table-header-color);
+    color: white;
+}
+
+table tr:hover 
+{
+    background-color: var(--table-row-hover);
+}
+
+footer 
+{
+    background-color: var(--footer-background);
+    color: var(--footer-text-color);
+    padding: 10px;
+    text-align: center;
+    margin-top: 30px;
+    border-radius: 4px;
+}
+
+a 
+{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover 
+{
+    color: var(--button-hover-color);
+}
