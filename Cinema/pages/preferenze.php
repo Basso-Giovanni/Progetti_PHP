@@ -19,7 +19,7 @@
 </head>
 <body>
     <h1>Scegli i tuoi generi preferiti</h1>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"> <!-- Non va bene, devono essere presi dal DB !-->
         <label>
             <input type="checkbox" name="generi[]" value="Azione"> Azione
         </label><br>

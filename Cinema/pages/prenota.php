@@ -34,7 +34,7 @@
     {
         echo "<h1>Prenota Posti per la Proiezione: " . $proiezione['titolo'] . "</h1>
             <h3>Posti disponibili: " .  $proiezione['postiDisponibili'] . "</h3>
-            <form method='POST'>
+            <form method='POST' action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "'>
             <label>Seleziona i posti (max 10):</label><br>
             <input type='number' min=1 max=10 name='posti'><br>
             <input type='submit' value='Prenota'>
