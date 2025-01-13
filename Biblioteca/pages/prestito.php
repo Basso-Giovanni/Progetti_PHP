@@ -36,9 +36,21 @@
     {
         echo "Il libro non è disponibile per il prestito.";
     }
+
+    $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <link rel="stylesheet" href="../style/style.css">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
+    <link rel="stylesheet" href="../style/style.css"> 
+    <title>Biblioteca</title>
 </head>
-<br>
-<a href="home.php">Torna alla homepage</a>
+<body>
+    <br>
+    <a href="home.php">Torna alla homepage</a>
+</body>
+</html>

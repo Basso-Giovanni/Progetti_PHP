@@ -45,17 +45,28 @@
             echo "Email non trovata.";
         }
     }
+
+    $conn->close();
 ?>
+<!DOCTYPE html>
+<html lang="it">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
+    <title>Biblioteca</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br>
-    
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br>
-    
-    <input type="submit" value="Accedi">
-    <a href="pages/registrazione.php">Registrati</a>
-</form>
+<body>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        
+        <input type="submit" value="Accedi">
+        <a href="pages/registrazione.php">Registrati</a>
+    </form>
+</body>
+</html>

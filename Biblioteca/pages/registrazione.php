@@ -25,22 +25,33 @@
             echo "Errore: " . $sql . "<br>" . $conn->error;
         }
     }
+    $conn->close();
 ?>
+
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <link rel="stylesheet" href="../style/style.css">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
+    <link rel="stylesheet" href="../style/style.css"> 
+    <title>Biblioteca</title>
 </head>
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-    <label for="nome">Nome:</label><br>
-    <input type="text" id="nome" name="nome" required><br>
-    
-    <label for="cognome">Cognome:</label><br>
-    <input type="text" id="cognome" name="cognome" required><br>
-    
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br>
-    
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br>
-    
-    <input type="submit" value="Registrati">
-</form>
+<body>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required><br>
+        
+        <label for="cognome">Cognome:</label><br>
+        <input type="text" id="cognome" name="cognome" required><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        
+        <input type="submit" value="Registrati">
+    </form>
+</body>
+</html>

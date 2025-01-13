@@ -29,25 +29,35 @@
             echo "Errore: " . $conn->error;
         }
     }
+    $conn->close();
 ?>
+<!DOCTYPE html>
+<html lang="it">
 <head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
+    <title>Biblioteca</title>
     <link rel="stylesheet" href="../style/style.css">
 </head>
-<h1>Aggiunta di un nuovo libro</h1>
-<form action="admin.php" method="POST">
-    <label for="titolo">Titolo:</label><br>
-    <input type="text" id="titolo" name="titolo" required><br>
-    
-    <label for="autore">Autore:</label><br>
-    <input type="text" id="autore" name="autore" required><br>
-    
-    <label for="anno">Anno di Pubblicazione:</label><br>
-    <input type="number" id="anno" name="anno" required><br>
-    
-    <label for="genere">Genere:</label><br>
-    <input type="text" id="genere" name="genere" required><br>
-    
-    <input type="submit" value="Aggiungi Libro">
-</form>
-<br>
-<a href="../index.php">Esci</a>
+<body>
+    <h1>Aggiunta di un nuovo libro</h1>
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <label for="titolo">Titolo:</label><br>
+        <input type="text" id="titolo" name="titolo" required><br>
+        
+        <label for="autore">Autore:</label><br>
+        <input type="text" id="autore" name="autore" required><br>
+        
+        <label for="anno">Anno di Pubblicazione:</label><br>
+        <input type="number" id="anno" name="anno" required><br>
+        
+        <label for="genere">Genere:</label><br>
+        <input type="text" id="genere" name="genere" required><br>
+        
+        <input type="submit" value="Aggiungi Libro">
+    </form>
+    <br>
+    <a href="../index.php">Esci</a>
+</body>
+</html>
