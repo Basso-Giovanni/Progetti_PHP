@@ -20,10 +20,14 @@
         }
     }
 ?>
-
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <title>Stelle e pellicole</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
+    <link rel="stylesheet" href="../style/style.css"> 
+    <title>Cinema</title>
 </head>
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
@@ -33,3 +37,4 @@
         <input type="submit" value="Registrati">
     </form>
 </body>
+</html>

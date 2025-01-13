@@ -1,4 +1,15 @@
 <?php
+    include("../config/db.php");
+
+    $query = "SELECT DISTINCT proiezioni.genere FROM proiezioni";
+    $result = $conn->query($query);
+
+    $generi = [];
+    while ($row = $result->fetch_assoc()) 
+    {
+        $generi[] = $row['genere'];
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
         if (isset($_POST['generi'])) 
@@ -12,44 +23,33 @@
         header("Refresh:0");
     }
 ?>
-
+<!DOCTYPE html>
+<html lang="it">
 <head>
-    <title>Stelle e pellicole</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
+    <link rel="stylesheet" href="../style/style.css"> 
+    <title>Cinema</title>
 </head>
 <body>
     <h1>Scegli i tuoi generi preferiti</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"> <!-- Non va bene, devono essere presi dal DB !-->
-        <label>
-            <input type="checkbox" name="generi[]" value="Azione"> Azione
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Commedia"> Commedia
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Drammatico"> Drammatico
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Fantasy"> Fantasy
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Horror"> Horror
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Thriller"> Thriller
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Romantico"> Romantico
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Fantascienza"> Fantascienza
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Dramma"> Dramma
-        </label><br>
-        <label>
-            <input type="checkbox" name="generi[]" value="Storico"> Storico
-        </label><br>
+        <?php
+            if (!empty($generi)) 
+            {
+                foreach ($generi as $genere) 
+                {
+                    echo '<label>';
+                    echo '<input type="checkbox" name="generi[]" value="' . htmlspecialchars($genere) . '"> ' . htmlspecialchars($genere);
+                    echo '</label><br>';
+                }
+            } 
+            else 
+            {
+                echo "<p>Non ci sono generi disponibili.</p>";
+            }
+        ?>
         <input type="submit" value="Salva Preferenze">
     </form>
     
@@ -79,3 +79,5 @@
     <a href="film.php">Vai alla lista dei film</a>
     <a href="../index.php">Esci</a>
 </body>
+<?php $conn->close();?>
+</html>

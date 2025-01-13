@@ -16,9 +16,14 @@
     $result = $conn->query($query);
 ?>
 
+<!DOCTYPE html>
+<html lang="it">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
     <link rel="stylesheet" href="../style/style.css"> 
-    <title>Stelle e pellicole</title>
+    <title>Cinema</title>
 </head>
 <body>
     <h1>Lista dei Film</h1>
@@ -38,3 +43,5 @@
     <a href="preferenze.php">Cambia le preferenze</a>
     <a href="../index.php">Esci</a>
 </body>
+<?php $conn->close();?>
+</html>
