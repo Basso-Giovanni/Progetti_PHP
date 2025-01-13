@@ -36,7 +36,7 @@
     <h1>Inserisci Ordinazione</h1>
 
     <!-- Form per inserire una nuova ordinazione -->
-    <form action="inserisci_ordinazione.php" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <label for="prodotto">Prodotto:</label>
         <select name="prodotto" id="prodotto" required>
 
@@ -46,11 +46,6 @@
                     echo "<option value='" . $row['IDProdotto'] . "'>" . $row['Nome'] . " - €" . $row['Prezzo'] . "</option>";
                 }
             ?>
-
-            <!-- <?php //while ($row = $prodotti->fetch_assoc()): ?>
-                <option value="<? //$row['IDProdotto']; ?>"><?// $row['Nome']; ?> - €<?// $row['Prezzo']; ?></option>
-            <?php //endwhile; ?> -->
-
         </select>
         <br>
 
@@ -63,10 +58,6 @@
                     echo "<option value='" . $row['IDCameriere'] . "'>" . $row['Nome'] . "</option>";
                 }
             ?>
-
-            <!-- <?php //while ($row = $camerieri->fetch_assoc()): ?>
-                <option value="<? //$row['IDCameriere']; ?>"><? //$row['Nome']; ?></option>
-            <?php //endwhile; ?> -->
         </select>
         <br>
 
