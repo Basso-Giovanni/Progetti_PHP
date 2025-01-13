@@ -30,7 +30,7 @@
 
     <!-- Form per l'inserimento di ospedali -->
     <h2>Inserisci Ospedale</h2>
-    <form action="" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="hidden" name="action" value="ospedali">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
@@ -44,4 +44,5 @@
         <a href="../inserimento.html">Torna alla pagina di inserimenti</a>
     </footer>
 </body>
+<?php $conn->close();?>
 </html>

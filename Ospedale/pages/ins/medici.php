@@ -31,7 +31,7 @@
 
     <!-- Form per l'inserimento di medici -->
     <h2>Inserisci Medico</h2>
-    <form action="" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="hidden" name="action" value="medici">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
@@ -56,4 +56,5 @@
         <a href="../inserimento.html">Torna alla pagina di inserimenti</a>
     </footer>
 </body>
+<?php $conn->close();?>
 </html>

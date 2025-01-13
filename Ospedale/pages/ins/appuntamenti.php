@@ -31,7 +31,7 @@
 
     <!-- Form per l'inserimento di appuntamenti -->
     <h2>Inserisci Appuntamento</h2>
-    <form action="" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="hidden" name="action" value="appuntamenti">
         <label for="paziente">Paziente:</label>
         <select id="paziente" name="paziente">
@@ -63,4 +63,5 @@
         <a href="../inserimento.html">Torna alla pagina di inserimenti</a>
     </footer>
 </body>
+<?php $conn->close();?>
 </html>

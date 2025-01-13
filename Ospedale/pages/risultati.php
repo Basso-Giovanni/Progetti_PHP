@@ -72,46 +72,49 @@
     <h1>Risultati della ricerca</h1>
 
     <?php 
-    if ($result && $result->num_rows > 0): ?>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Paziente</th>
-                    <th>Medico</th>
-                    <th>Data e Ora</th>
-                    <th>Stato</th>
-                    <th>Modifica Stato</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = $result->fetch_assoc()): ?>
+        if ($result && $result->num_rows > 0)
+        {
+            echo "<table>
+                <thead>
                     <tr>
-                        <td><?= $row['ID'] ?></td>
-                        <td><?= $row['P_cognome'] . " " . $row['P_nome'] ?></td>
-                        <td>Dr. <?= $row['M_cognome'] . " " . $row['M_nome'] ?></td>
-                        <td><?= $row['data_ora'] ?></td>
-                        <td><?= $row['stato'] ?></td>
-                        <td>
-                            <!-- Form per modificare lo stato dell'appuntamento -->
-                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                                <input type="hidden" name="appuntamento_id" value="<?= $row['ID'] ?>">
-                                <select name="stato">
-                                    <option value="in_attesa" <?= $row['stato'] == 'in_attesa' ? 'selected' : '' ?>>In Attesa</option>
-                                    <option value="confermato" <?= $row['stato'] == 'confermato' ? 'selected' : '' ?>>Confermato</option>
-                                    <option value="cancellato" <?= $row['stato'] == 'cancellato' ? 'selected' : '' ?>>Cancellato</option>
-                                </select>
-                                <button type="submit">Modifica</button>
-                            </form>
-                        </td>
+                        <th>Paziente</th>
+                        <th>Medico</th>
+                        <th>Data e Ora</th>
+                        <th>Stato</th>
+                        <th>Modifica Stato</th>
                     </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    <?php else: ?>
-        <p>Nessun risultato trovato.</p>
-    <?php endif; ?>
-
+                </thead>
+                <tbody>";
+            
+                while ($row = $result->fetch_assoc())
+                {
+                    echo "<tr>
+                            <td>" . $row['P_cognome'] . " " . $row['P_nome'] . "</td>
+                            <td>Dr. " . $row['M_cognome'] . " " . $row['M_nome'] ."</td>
+                            <td>" . $row['data_ora'] . "</td>
+                            <td>" . $row['stato'] . "</td>
+                            <td>
+                                <form action='" . htmlspecialchars($_SERVER["PHP_SELF"]) . "' method = 'POST'>
+                                    <input type = 'hidden' name 'appuntamento_id' value = '" . $row['ID'] . "'>
+                                    <select name=stato>
+                                        <option value='in_attesa' " . $row['stato'] == 'in_attesa' ? 'selected' : '' . ">In attesa</option>
+                                        <option value='confermato' " . $row['stato'] == 'confermato' ? 'selected' : '' . ">Confermato</option>
+                                        <option value='cancellato' " . $row['stato'] == 'cancellato' ? 'selected' : '' . ">Cancellato</option>
+                                    </select>
+                                    <button type='submit'>Modifica</button>
+                                <form>
+                            </td>
+                        </tr>";
+                }
+                echo "</tbody>
+                    </table>";
+        }
+        else
+        {
+            echo "<p>Nessun risultato trovato</p>";
+        }
+    ?>
     <a href="ricerca.php">Torna alla pagina principale</a>
 </body>
+<?php $conn->close();?>
 </html>

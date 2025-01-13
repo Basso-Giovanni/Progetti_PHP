@@ -12,6 +12,8 @@
     $medici = $conn->query($sql_S_ALL_Med);
     $pazienti = $conn->query($sql_S_ALL_Paz);
     $appuntamenti = $conn->query($sql_S_ALL_App);
+
+    $conn->close();
 ?>
 
 <!DOCTYPE html>

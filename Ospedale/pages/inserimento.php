@@ -68,7 +68,7 @@
 
     <!-- Form per l'inserimento di ospedali -->
     <h2>Inserisci Ospedale</h2>
-    <form action="" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="hidden" name="action" value="ospedali">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
@@ -81,7 +81,7 @@
 
     <!-- Form per l'inserimento di medici -->
     <h2>Inserisci Medico</h2>
-    <form action="" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="hidden" name="action" value="medici">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
@@ -92,11 +92,12 @@
         <label for="ospedale">Ospedale:</label>
         <select id="ospedale" name="ospedale">
             <?php
-            // Popola la dropdown con gli ospedali
-            $ospedali = $conn->query("SELECT id, nome FROM Ospedali");
-            while ($ospedale = $ospedali->fetch_assoc()) {
-                echo "<option value='{$ospedale['id']}'>{$ospedale['nome']}</option>";
-            }
+                // Popola la dropdown con gli ospedali
+                $ospedali = $conn->query("SELECT id, nome FROM Ospedali");
+                while ($ospedale = $ospedali->fetch_assoc()) 
+                {
+                    echo "<option value='{$ospedale['id']}'>{$ospedale['nome']}</option>";
+                }
             ?>
         </select>
         <button type="submit">Inserisci</button>
@@ -104,7 +105,7 @@
 
     <!-- Form per l'inserimento di pazienti -->
     <h2>Inserisci Paziente</h2>
-    <form action="" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="hidden" name="action" value="pazienti">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
@@ -121,26 +122,28 @@
 
     <!-- Form per l'inserimento di appuntamenti -->
     <h2>Inserisci Appuntamento</h2>
-    <form action="" method="POST">
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="hidden" name="action" value="appuntamenti">
         <label for="paziente">Paziente:</label>
         <select id="paziente" name="paziente">
             <?php
-            // Popola la dropdown con i pazienti
-            $pazienti = $conn->query("SELECT id, nome, cognome FROM Pazienti");
-            while ($paziente = $pazienti->fetch_assoc()) {
-                echo "<option value='{$paziente['id']}'>{$paziente['nome']} {$paziente['cognome']}</option>";
-            }
+                // Popola la dropdown con i pazienti
+                $pazienti = $conn->query("SELECT id, nome, cognome FROM Pazienti");
+                while ($paziente = $pazienti->fetch_assoc()) 
+                {
+                    echo "<option value='{$paziente['id']}'>{$paziente['nome']} {$paziente['cognome']}</option>";
+                }
             ?>
         </select>
         <label for="medico">Medico:</label>
         <select id="medico" name="medico">
             <?php
-            // Popola la dropdown con i medici
-            $medici = $conn->query("SELECT id, nome, cognome FROM Medici");
-            while ($medico = $medici->fetch_assoc()) {
-                echo "<option value='{$medico['id']}'>Dr. {$medico['nome']} {$medico['cognome']}</option>";
-            }
+                // Popola la dropdown con i medici
+                $medici = $conn->query("SELECT id, nome, cognome FROM Medici");
+                while ($medico = $medici->fetch_assoc()) 
+                {
+                    echo "<option value='{$medico['id']}'>Dr. {$medico['nome']} {$medico['cognome']}</option>";
+                }
             ?>
         </select>
         <label for="data_ora">Data e Ora:</label>
@@ -153,4 +156,5 @@
         <button type="submit">Inserisci</button>
     </form>
 </body>
+<?php $conn->close();?>
 </html>
