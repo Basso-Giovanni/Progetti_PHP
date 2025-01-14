@@ -1,0 +1,20 @@
+[
+    {
+        "marca": "Audi",
+        "modello": "A4",
+        "annoProduzione": 2020,
+        "prezzo": 30000,
+        "chilometraggio": 15000,
+        "colore": "Bianco",
+        "stato": "Usata"
+    },
+    {
+        "marca": "BMW",
+        "modello": "X3",
+        "annoProduzione": 2018,
+        "prezzo": 25000,
+        "chilometraggio": 40000,
+        "colore": "Nero",
+        "stato": "Usata"
+    }
+]

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Giovanni Basso">
+    <title>Motori Eccellenti</title>
+    <link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+    <h1>Ricerca Automobili</h1>
+    <form id="searchForm">
+        <div class="form-group">
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca" onkeyup="Search()">
+        </div>
+        <div class="form-group">
+            <label for="modello">Modello:</label>
+            <input type="text" id="modello" name="modello" onkeyup="Search()">
+        </div>
+        <div class="form-group">
+            <label for="annoDa">Anno di produzione (da):</label>
+            <input type="number" id="annoDa" name="annoDa" min="1900" max="2025" onkeyup="Search()">
+        </div>
+        <div class="form-group">
+            <label for="annoA">Anno di produzione (a):</label>
+            <input type="number" id="annoA" name="annoA" min="1900" max="2025" onkeyup="Search()">
+        </div>
+        <div class="form-group">
+            <label for="prezzoMin">Fascia di prezzo (min):</label>
+            <input type="number" id="prezzoMin" name="prezzoMin" step="1000" onkeyup="Search()">
+        </div>
+        <div class="form-group">
+            <label for="prezzoMax">Fascia di prezzo (max):</label>
+            <input type="number" id="prezzoMax" name="prezzoMax" step="1000" onkeyup="Search()">
+        </div>
+    </form>
+
+    <h2>Risultati della ricerca</h2>
+    <div id="results">
+    </div>
+    <script src="../script/ricerca.js"></script>
+    <script>
+        // Esegui la funzione Search() dopo il caricamento del DOM
+        document.addEventListener("DOMContentLoaded", function() {
+            Search();
+        });
+    </script>
+</body>
+</html>

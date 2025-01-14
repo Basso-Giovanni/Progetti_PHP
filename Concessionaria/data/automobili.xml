@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <car>
+        <marca>Audi</marca>
+        <modello>A4</modello>
+        <annoProduzione>2020</annoProduzione>
+        <prezzo>30000</prezzo>
+        <chilometraggio>15000</chilometraggio>
+        <colore>Bianco</colore>
+        <stato>Usata</stato>
+    </car>
+    <car>
+        <marca>BMW</marca>
+        <modello>X3</modello>
+        <annoProduzione>2018</annoProduzione>
+        <prezzo>25000</prezzo>
+        <chilometraggio>40000</chilometraggio>
+        <colore>Nero</colore>
+        <stato>Usata</stato>
+    </car>
+</root>
