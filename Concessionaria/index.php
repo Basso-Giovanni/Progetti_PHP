@@ -61,6 +61,6 @@
         <input type="submit" value="Accedi">
         <a href="pages/signin.php">Registrati</a>
     </form>
-    <a href="pages/home.php">Entra senza accedere</a>
+    <a href="pages/home.html">Entra senza accedere</a>
 </body>
 </html>
