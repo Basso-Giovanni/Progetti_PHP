@@ -34,7 +34,7 @@
 
         if (isset($_SESSION['email']))
         {
-            $suggestions[] = "Marca: $auto->marca, Modello: $auto->modello, Anno: $auto->annoProduzione, Prezzo: $auto->prezzo €, Colore: $auto->colore, Chilometraggio: $auto->chilometraggio km, Stato: $stato_info, <a href='../config/edit.php?q=" . $auto->id . "'>Modifica</a>";
+            $suggestions[] = "Marca: $auto->marca, Modello: $auto->modello, Anno: $auto->annoProduzione, Prezzo: $auto->prezzo €, Colore: $auto->colore, Chilometraggio: $auto->chilometraggio km, Stato: $stato_info, <a href='../config/edit.php?q=" . $auto->id . "'>Modifica</a>, <a href='../config/delete.php?q=" . $auto->id . "'>Elimina</a>";
         }
         else
         {
