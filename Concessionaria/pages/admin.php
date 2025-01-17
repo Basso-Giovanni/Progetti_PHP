@@ -1,21 +1,29 @@
 <?php
+    session_start();
     require '../config/db.php';
     
+    if (!isset($_SESSION['email'])) 
+    {
+        header("Location: http://localhost/2024/concessionaria");
+        exit();
+    }
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
-        // Prendi i dati dal form
         $marca = $_POST['addMarca'];
         $modello = $_POST['addModello'];
         $anno = $_POST['addAnno'];
         $prezzo = $_POST['addPrezzo'];
         $colore = $_POST['addColore'];
         $km = $_POST['addKM'];
+        $stato = 0;
+        if ($km == '0')
+        {
+            $stato = 1;
+        }
         
-        // Inserisci nel database
-        $sql = 'INSERT INTO automobili (marca, modello, anno, prezzo) VALUES ("' . $marca . '", "' . $modello . '", ' . $anno . ', ' . $prezzo . ')';
+        $sql = 'INSERT INTO automobili (marca, modello, annoProduzione, prezzo, chilometraggio, colore, stato) VALUES ("' . $marca . '", "' . $modello . '", ' . $anno . ', ' . $prezzo . ', ' . $km . ', "' . $colore . '", "' . $stato . '")';
         
-        require '../config/'
-
         if ($conn->query($sql) === TRUE) 
         {
             echo "Automobile registrata con successo!";
@@ -26,6 +34,7 @@
         }
     }
     $conn->close();
+    require '../config/download.php'; //per aggiornare il file xml
 ?>
 
 <!DOCTYPE html>
@@ -102,10 +111,7 @@
     <a href="../index.php">Esci</a>
     <script src="../script/ricerca.js"></script>
     <script>
-        // Esegui la funzione Search() dopo il caricamento del DOM
-        document.addEventListener("DOMContentLoaded", function() {
-            Search();
-        });
+        document.addEventListener("DOMContentLoaded", function() { Search(); });
     </script>
 </body>
 </html>

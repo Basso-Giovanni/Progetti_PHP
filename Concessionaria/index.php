@@ -1,29 +1,25 @@
 <?php
     session_start();
     require 'config/db.php';
+    session_unset();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
-        // Ottieni i dati dal form
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Recupera l'utente dal database
         $sql = "SELECT * FROM utenti WHERE email='$email'";
         $result = $conn->query($sql);
         
         if ($result->num_rows > 0) 
         {
-            // L'utente esiste
             $user = $result->fetch_assoc();
             
-            // Verifica la password
             if (password_verify($password, $user['pass'])) 
             {
-                // Setta la sessione
                 $_SESSION['email'] = $user['email'];
-                $_SESSION['nome'] = $user['nome'];
 
+                session_regenerate_id();
                 header("Location: http://localhost/2024/concessionaria/pages/admin.php");
                 exit;
             } 

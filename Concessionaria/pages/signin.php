@@ -4,15 +4,12 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') 
     {
-        // Prendi i dati dal form
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         
-        // Hashing della password
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        // Inserisci nel database
         $sql = 'INSERT INTO utenti (nome, email, pass) VALUES ("' . $nome . '", "' . $email . '", "' . $password_hash . '")';
         
         if ($conn->query($sql) === TRUE) 

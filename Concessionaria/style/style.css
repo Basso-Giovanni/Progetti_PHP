@@ -1,0 +1,72 @@
+/* Definizioni globali e variabili */
+:root {
+    /* Colori principali */
+    --primary-color: #3498db;  /* Blu */
+    --secondary-color: #2ecc71; /* Verde */
+    --error-color: #e74c3c;     /* Rosso */
+    --success-color: #2ecc71;   /* Verde chiaro */
+    --background-color: #f4f4f4;/* Grigio chiaro */
+    --white: #ffffff;
+
+    /* Font e tipografia */
+    --font-family: 'Arial', sans-serif;
+    --font-size-base: 16px;
+    --font-size-lg: 20px;
+    --font-size-sm: 14px;
+
+    /* Spaziature */
+    --padding-base: 20px;
+    --margin-base: 20px;
+}
+
+/* Applicare variabili */
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    background-color: var(--background-color);
+    color: #333;
+    padding: var(--padding-base);
+}
+
+h1, h2 {
+    color: var(--primary-color);
+}
+
+/* Applicare colori sugli errori */
+.error-message {
+    color: var(--error-color);
+    background-color: #f2d7d5;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Successo con il verde */
+.success-message {
+    color: var(--success-color);
+    background-color: #d5f5e3;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+/* Bottoni */
+form input[type="submit"], button, .submit-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover, button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Link hover */
+a:hover {
+    text-decoration: underline;
+}
