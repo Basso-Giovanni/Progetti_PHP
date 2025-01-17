@@ -32,24 +32,6 @@ h1, h2 {
     color: var(--primary-color);
 }
 
-/* Applicare colori sugli errori */
-.error-message {
-    color: var(--error-color);
-    background-color: #f2d7d5;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 10px;
-}
-
-/* Successo con il verde */
-.success-message {
-    color: var(--success-color);
-    background-color: #d5f5e3;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 10px;
-}
-
 /* Bottoni */
 form input[type="submit"], button, .submit-btn {
     background-color: var(--primary-color);
@@ -69,4 +51,64 @@ form input[type="submit"]:hover, button:hover {
 /* Link hover */
 a:hover {
     text-decoration: underline;
+}
+
+/* Tavola elegante */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Righe della tabella */
+table th, table td {
+    padding: 12px 20px;
+    text-align: left;
+}
+
+/* Colori e bordi delle celle */
+table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-size: 1.1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+table td {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:nth-child(even) td {
+    background-color: #f2f2f2;  /* Righe alternate */
+}
+
+/* Righe della tabella al passaggio del mouse */
+table tr:hover td {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+/* Righe finali della tabella */
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Box shadow per la tabella */
+table {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modifica e elimina con colori distintivi */
+td a {
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 5px;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+td a:hover {
+    color: var(--secondary-color);
 }

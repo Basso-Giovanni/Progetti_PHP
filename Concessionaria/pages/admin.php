@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-<h1>Aggiunta Automobili</h1>
+    <h1>Aggiunta Automobili</h1>
     <form id="addForm" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="form-group">
             <label for="addMarca">Marca:</label>

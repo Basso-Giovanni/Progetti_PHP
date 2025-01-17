@@ -11,6 +11,18 @@
     $xml = simplexml_load_file('../data/automobili.xml');
     $suggestions = [];
 
+    echo "<table>
+            <tr>
+                <th>Marca</th>
+                <th>Modello</th>
+                <th>Anno</th>
+                <th>Prezzo (€)</th>
+                <th>Colore</th>
+                <th>Chilometraggio (km)</th>
+                <th>Stato</th>
+                <th>Azioni</th>
+            </tr>";
+
     foreach ($xml as $auto) 
     {
         $marcaAuto = strtolower($auto->marca);
@@ -18,36 +30,35 @@
         $annoProduzione = (int)$auto->annoProduzione;
         $prezzoAuto = (int)$auto->prezzo;
 
-        if ($marca !== null && strpos($marcaAuto, $marca) === false) continue; //strpos restituisce la posizione della prima occorrenza 
+        if ($marca !== null && strpos($marcaAuto, $marca) === false) continue;
         if ($modello !== null && strpos($modelloAuto, $modello) === false) continue;
         if ($annoDa !== null && $annoProduzione < $annoDa) continue;
         if ($annoA !== null && $annoProduzione > $annoA) continue;
         if ($prezzoMin !== null && $prezzoAuto < $prezzoMin) continue;
         if ($prezzoMax !== null && $prezzoAuto > $prezzoMax) continue;
-        
-        $stato_info = "usato";
 
-        if ($auto->stato == 1)
+        $stato_info = $auto->stato == 1 ? "nuovo" : "usato";
+
+        echo "<tr>
+                <td>{$auto->marca}</td>
+                <td>{$auto->modello}</td>
+                <td>{$auto->annoProduzione}</td>
+                <td>{$auto->prezzo} €</td>
+                <td>{$auto->colore}</td>
+                <td>{$auto->chilometraggio} km</td>
+                <td>{$stato_info}</td>";
+
+        if (isset($_SESSION['email'])) 
         {
-            $stato_info = "nuovo";
+            echo "<td><a href='../config/edit.php?q={$auto->id}'>Modifica</a>|<a href='../config/delete.php?q={$auto->id}'>Elimina</a></td>";
+        } 
+        else 
+        {
+            echo "<td>-</td>";
         }
 
-        if (isset($_SESSION['email']))
-        {
-            $suggestions[] = "Marca: $auto->marca, Modello: $auto->modello, Anno: $auto->annoProduzione, Prezzo: $auto->prezzo €, Colore: $auto->colore, Chilometraggio: $auto->chilometraggio km, Stato: $stato_info, <a href='../config/edit.php?q=" . $auto->id . "'>Modifica</a>, <a href='../config/delete.php?q=" . $auto->id . "'>Elimina</a>";
-        }
-        else
-        {
-            $suggestions[] = "Marca: $auto->marca, Modello: $auto->modello, Anno: $auto->annoProduzione, Prezzo: $auto->prezzo €, Colore: $auto->colore, Chilometraggio: $auto->chilometraggio km, Stato: $stato_info";
-        }
+        echo "</tr>";
     }
 
-    if (empty($suggestions)) 
-    {
-        echo "Nessuna corrispondenza trovata.";
-    } 
-    else 
-    {
-        echo implode('<br>', $suggestions);
-    }
+    echo "</table>";
 ?>
