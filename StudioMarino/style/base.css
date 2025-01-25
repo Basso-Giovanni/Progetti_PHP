@@ -1,0 +1,100 @@
+/* style/base.css */
+
+/* Reset o stili di base (opzionale) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Contenitore generale */
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #007BFF; /* Blu */
+    padding: 10px;
+  }
+  .navbar ul {
+    list-style: none;
+    display: flex;
+  }
+  .navbar li {
+    margin-right: 15px;
+  }
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Titolo principale */
+  h1 {
+    margin: 20px 0;
+    font-size: 2em;
+  }
+  
+  /* Tabella */
+  .table-container {
+    margin-top: 20px;
+  }
+  
+  .tabella-animali {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .tabella-animali th,
+  .tabella-animali td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .tabella-animali th {
+    background-color: #eee;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+  }
+  
+
+  .suggestions-box {
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    max-width: 400px;
+    background-color: #f9f9f9;
+  }
+  
+  .suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .suggestion-item:hover {
+    background-color: #ddd;
+  }
+  
+  .details-box {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #eef;
+  }
+  
