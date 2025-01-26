@@ -17,6 +17,37 @@ class Database
 
     }
 
+    public function getUser(string $email, string $password): int //metodo per controllare l'utente
+    {
+        // Protegge da injection
+        $email = $this->conn->real_escape_string($email);
+
+        $sql = "SELECT * FROM utente
+                WHERE email LIKE '%$email%'";
+    
+        $result = $this->conn->query($sql);
+
+        if ($result && $result->num_rows > 0) 
+        {
+            $user = $result->fetch_assoc();
+
+            if (password_verify($password, $user['pass'])) 
+            {
+                $_SESSION['email'] = $user['email'];
+
+                session_regenerate_id();
+                return 0;
+            } 
+            else 
+            {
+                return -2;
+            }
+        }
+        else
+        {
+            return -1;
+        }
+    }
 
     public function getAllAnimaliMarini(): array //return array
     {
@@ -58,3 +89,4 @@ class Database
         }
     }
 }
+?>
