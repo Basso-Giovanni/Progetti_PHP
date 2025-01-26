@@ -33,19 +33,16 @@ class Database
 
             if (password_verify($password, $user['pass'])) 
             {
-                $_SESSION['email'] = $user['email'];
-
-                session_regenerate_id();
-                return 0;
+                return 0; //login corretto
             } 
             else 
             {
-                return -2;
+                return -2; //password errata
             }
         }
         else
         {
-            return -1;
+            return -1; //utente inesistente
         }
     }
 
@@ -80,6 +77,36 @@ class Database
             }
         }
         return $data;
+    }
+
+    public function addAnimali(string $nome, float $lat, float $long, string $specie, string $desc, string $data)
+    {
+        $sql = "";
+
+        if (isset($desc) && !empty($desc))
+        {
+            if (isset($data) && !empty($data))
+            {
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, Descrizione, DataAvvistamento) VALUES ($nome, $lat, $long, $specie, $desc, $data)";
+            }
+            else
+            {
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, Descrizione) VALUES ($nome, $lat, $long, $specie, $desc)";
+            }
+        }
+        else
+        {
+            if (isset($data) && !empty($data))
+            {
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, DataAvvistamento) VALUES ($nome, $lat, $long, $specie, $data)";
+            }
+            else
+            {
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie) VALUES ($nome, $lat, $long, $specie)";
+            }
+        }
+
+        $this->conn->query($sql);
     }
 
     public function close()
