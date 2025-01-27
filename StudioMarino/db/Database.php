@@ -109,6 +109,35 @@ class Database
         $this->conn->query($sql);
     }
 
+    public function updateAnimali(string $nome, float $lat, float $long, string $desc, string $data) : int
+    {
+        $result = $this->searchAnimaliByName($nome);
+        if (isset($result) && !empty($result))
+        {
+            // if ($row = $result->fetch_assoc())
+            $id = $result[0]['id'];
+
+            $sql = "UPDATE AnimaliMarini SET Latitudine = " . $lat . ", Longitudine = " . $long;
+            if (isset($desc) && !empty($desc))
+            {
+                $sql .= ", Descrizione = '" . $desc . "'";
+            }
+            if (isset($data) && !empty($data))
+            {
+                $sql .= ", DataAvvistamento = '" . $data . "'";
+            }
+            $sql .= " WHERE id = " . $id;
+
+            $this->conn->query($sql);
+
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public function close()
     {
         if ($this->conn) {

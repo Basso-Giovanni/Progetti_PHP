@@ -20,11 +20,18 @@
         }
         elseif (isset($_POST['update']))
         {
-
+            if ($db->updateAnimali($_POST['nome'], (float)$_POST['lat'], (float)$_POST['long'], $_POST['desc'], $_POST['data']) == 1)
+            {
+                echo "Nuovo avvistamento inserito per l'animale: " . $_POST['nome'];
+            }
+            else
+            {
+                echo "Errore nell'inserimento del nuovo avvistamento!";
+            }
         }
     }
 
-    //TODO: Aggiungere il codice per aggiungere l'animale, Aggiungere il codice di Database.php per modificare l'ultimo avvistamento
+    //TODO: Aggiungere il codice di Database.php per modificare l'ultimo avvistamento
 
 
     $db->close();
@@ -73,7 +80,7 @@
     <h1>Aggiungi avvistamento</h1>
     <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <label>Seleziona l'animale</label>
-        <select>
+        <select name="nome">
             <?php
                 foreach ($animali as $animale)
                 {
@@ -93,8 +100,8 @@
         <label for="long">Longitudine (max 10 cifre di cui 7 decimali)</label>
         <input 
             type="number" 
-            id="lat" 
-            name="lat" 
+            id="long" 
+            name="long" 
             step="0.0000001" 
             max="999.9999999" 
             required
