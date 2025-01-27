@@ -23,16 +23,20 @@
     
     <form action="#" method="get">
       <label for="fname">Nome Animale:</label>
-      <input type="text" id="fname" name="fname" onkeyup="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value)"><br>
+      <input type="text" id="fname" name="fname" onkeyup="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value, document.getElementById('data_da').value, document.getElementById('data_a').value)"><br>
       <label for="select_specie">Specie</label>
-      <select name="select_specie" id="select_specie" onchange="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value)">
+      <select name="select_specie" id="select_specie" onchange="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value, document.getElementById('data_da').value, document.getElementById('data_a').value)">
         <?php 
           foreach ($specie as $s)
           {
             echo "<option value=" . str_replace(" ", "_", $s['Specie']) . ">" . $s['Specie'] . "</option>";
           }
         ?>
-      </select> 
+      </select> <br>
+      <label for="data_da">Data avvistamento (da)</label>
+      <input type="date" id="data_da" name="data_da" onchange="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value, document.getElementById('data_da').value, document.getElementById('data_a').value)"><br>
+      <label for="data_a">Data avvistamento (a)</label>
+      <input type="date" id="data_a" name="data_a" onchange="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value, document.getElementById('data_da').value, document.getElementById('data_a').value)">
     </form>
     
     

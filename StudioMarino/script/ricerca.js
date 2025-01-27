@@ -1,6 +1,6 @@
 // script/ricerca.js
 
-function showHint(str, specie) {
+function showHint(str, specie, data_da, data_a) {
 
     if (str.length === 0) {
       document.getElementById("txtHint").innerHTML = "";
@@ -14,7 +14,7 @@ function showHint(str, specie) {
           document.getElementById("txtHint").innerHTML = this.responseText;
       };
       // Apri la richiesta GET verso ricercaAjax.php, passando il parametro q
-      var url = "ricercaAjax.php?q=" + encodeURIComponent(str) + "&s=" + encodeURIComponent(specie);
+      var url = "ricercaAjax.php?q=" + encodeURIComponent(str) + "&s=" + encodeURIComponent(specie) + "&d=" + encodeURIComponent(data_da) + "&a=" + encodeURIComponent(data_a);
       xmlhttp.open("GET", url, true);
       xmlhttp.send();
     }

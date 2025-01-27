@@ -18,24 +18,55 @@ else
 // Leggiamo il parametro di ricerca
 $q = isset($_REQUEST["q"]) ? trim($_REQUEST["q"]) : "";
 $s = isset($_REQUEST["s"]) ? trim($_REQUEST["s"]) : "";
+$d = isset($_REQUEST["d"]) ? trim($_REQUEST["d"]) : "";
+$a = isset($_REQUEST["a"]) ? trim($_REQUEST["a"]) : "";
+
+if ($d !== "" && $a !== "" && strtotime($d) && strtotime($a)) 
+{
+    $data_inizio = strtotime($d);
+    $data_fine = strtotime($a);
+}
 
 if ($q === "" && $s === "") 
 {
     echo "";
-}
-else
+} 
+else 
 {
     $risultati = [];
     foreach ($animali as $animale) 
     {
         // Verifichiamo se la stringa $q è contenuta (case-insensitive) nel campo Nome
         // Per il case-insensitive uso `stripos`.
-        if (stripos($animale['Nome'], $q) !== false && $animale['Specie'] == str_replace("_", " ", $s)) 
+        $nome_completo = $animale['Nome'];
+        $specie_completa = str_replace("_", " ", $s);
+
+        // Verifica se il nome contiene la stringa di ricerca e la specie corrisponde
+        if (stripos($nome_completo, $q) !== false && $animale['Specie'] == $specie_completa) 
         {
-            $risultati[] = $animale['Nome'];
+            if ($d !== "" && $a !== "" && isset($animale['DataAvvistamento'])) 
+            {
+                $data_avvistamento = strtotime($animale['DataAvvistamento']);
+                
+                if ($data_avvistamento >= $data_inizio && $data_avvistamento <= $data_fine) 
+                {
+                    $risultati[] = $nome_completo;
+                }
+            } 
+            else 
+            {
+                $risultati[] = $nome_completo;
+            }
+        }
+        
+        // Se sono stati già raccolti 5 risultati, fermiamo la ricerca
+        if (count($risultati) >= 5) 
+        {
+            break; // Esci dal ciclo se sono stati trovati 5 risultati
         }
     }
 
+    // Mostriamo i risultati se ce ne sono
     if (!empty($risultati)) 
     {
         foreach ($risultati as $animale)
@@ -50,31 +81,4 @@ else
     }
 }
 
-
-
-/*Soluzione con interrogazione continua del DB
-require_once __DIR__ . './../db/Database.php';
-$db = new Database();
-
-$q = isset($_GET['q']) ? trim($_GET['q']) : '';
-if ($q === '') {
-    echo "";
-    exit;
-}
-
-$risultati = $db->searchAnimaliByName($q);
-$db->close();
-
-if (!empty($risultati)) 
-{
-    $nomi = [];
-    foreach ($risultati as $animale) 
-    {
-        $nomi[] = $animale['Nome'];
-    }
-    echo implode(', ', $nomi);
-} 
-else 
-{
-    echo "Nessun suggerimento";
-}*/
+?>
