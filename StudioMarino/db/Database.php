@@ -60,6 +60,20 @@ class Database
         return $data;
     }
 
+    public function getAllSpecie(): array //return array
+    {
+        $sql = "SELECT DISTINCT Specie FROM AnimaliMarini";
+        $result = $this->conn->query($sql);
+
+        $data = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
+        return $data;
+    }
+
     public function searchAnimaliByName(string $nome): array
     {
         // Protegge da injection
@@ -114,7 +128,6 @@ class Database
         $result = $this->searchAnimaliByName($nome);
         if (isset($result) && !empty($result))
         {
-            // if ($row = $result->fetch_assoc())
             $id = $result[0]['id'];
 
             $sql = "UPDATE AnimaliMarini SET Latitudine = " . $lat . ", Longitudine = " . $long;

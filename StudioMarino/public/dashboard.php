@@ -31,9 +31,6 @@
         }
     }
 
-    //TODO: Aggiungere il codice di Database.php per modificare l'ultimo avvistamento
-
-
     $db->close();
 ?>
 

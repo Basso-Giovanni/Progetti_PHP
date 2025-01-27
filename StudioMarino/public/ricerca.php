@@ -1,5 +1,9 @@
 <?php
-    //Vi spiego dopo cosa si nasconde qui
+  require_once __DIR__ . '/../db/Database.php';
+  $db = new Database();
+  $specie = $db->getAllSpecie();
+
+  $db->close();
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -7,10 +11,9 @@
   <meta charset="UTF-8">
   <title>Ricerca Animali Marini</title>
   <link rel="stylesheet" href="../style/base.css"> <!-- Percorso verso base.css -->
-  <script src="../script/ricerca.js"></script>     <!-- Percorso verso ricerca.js -->
 </head>
 <body>
-
+  
   <!-- Inclusione navbar -->
   <?php require_once __DIR__ . '/navpub.php'; ?>
 
@@ -20,13 +23,21 @@
     
     <form action="#" method="get">
       <label for="fname">Nome Animale:</label>
-      <input type="text" id="fname" name="fname" onkeyup="showHint(this.value)">
-      
+      <input type="text" id="fname" name="fname" onkeyup="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value)"><br>
+      <label for="select_specie">Specie</label>
+      <select name="select_specie" id="select_specie" onchange="showHint(document.getElementById('fname').value, document.getElementById('select_specie').value)">
+        <?php 
+          foreach ($specie as $s)
+          {
+            echo "<option value=" . str_replace(" ", "_", $s['Specie']) . ">" . $s['Specie'] . "</option>";
+          }
+        ?>
+      </select> 
     </form>
-
     
     
-    <p>Suggerimenti: 
+    
+    <p>Suggerimenti:</p><p> 
       <span id="txtHint"></span>
     </p>
   </div>
@@ -34,6 +45,7 @@
   <footer>
     <p>&copy; <?php echo date('Y'); ?> Studio Marino</p>
   </footer>
-
+  
 </body>
+<script src="../script/ricerca.js"></script>     <!-- Percorso verso ricerca.js -->
 </html>

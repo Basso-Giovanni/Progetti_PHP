@@ -6,9 +6,9 @@ session_start();  // Avvio sessione per salvare localmente la tabella o parte di
 if (!isset($_SESSION['animali_marini'])) 
 {
     require_once __DIR__ . '/../db/Database.php';
-        $db = new Database();
+    $db = new Database();
     $_SESSION['animali_marini']= $db->getAllAnimaliMarini();
-        $db->close();
+    $db->close();
 } 
 else 
 {
@@ -17,8 +17,9 @@ else
 
 // Leggiamo il parametro di ricerca
 $q = isset($_REQUEST["q"]) ? trim($_REQUEST["q"]) : "";
+$s = isset($_REQUEST["s"]) ? trim($_REQUEST["s"]) : "";
 
-if ($q === "") 
+if ($q === "" && $s === "") 
 {
     echo "";
 }
@@ -29,7 +30,7 @@ else
     {
         // Verifichiamo se la stringa $q è contenuta (case-insensitive) nel campo Nome
         // Per il case-insensitive uso `stripos`.
-        if (stripos($animale['Nome'], $q) !== false) 
+        if (stripos($animale['Nome'], $q) !== false && $animale['Specie'] == str_replace("_", " ", $s)) 
         {
             $risultati[] = $animale['Nome'];
         }
@@ -37,8 +38,11 @@ else
 
     if (!empty($risultati)) 
     {
-        //implode traduce array in stringa separata da virgole 
-        echo implode(', ', $risultati); 
+        foreach ($risultati as $animale)
+        {
+            $url = str_replace(" ", "_", strtolower($animale));
+            echo "<a href='animale.php?nome=" . $url . "' >" . $animale . "</a><br>";
+        }
     } 
     else 
     {
