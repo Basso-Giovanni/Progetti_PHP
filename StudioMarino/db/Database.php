@@ -87,22 +87,22 @@ class Database
         {
             if (isset($data) && !empty($data))
             {
-                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, Descrizione, DataAvvistamento) VALUES ($nome, $lat, $long, $specie, $desc, $data)";
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, Descrizione, DataAvvistamento) VALUES ('" . $nome . "', " . $lat . ", " . $long . ", '" . $specie . "', '" . $desc . "', '" . $data . "')";
             }
             else
             {
-                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, Descrizione) VALUES ($nome, $lat, $long, $specie, $desc)";
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, Descrizione) VALUES ('" . $nome . "', " . $lat . ", " . $long . ", '" . $specie . "', '" . $desc . "')";
             }
         }
         else
         {
             if (isset($data) && !empty($data))
             {
-                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, DataAvvistamento) VALUES ($nome, $lat, $long, $specie, $data)";
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie, DataAvvistamento) VALUES ('" . $nome . "', " . $lat . ", " . $long . ", '" . $specie . "', '" . $data . "')";
             }
             else
             {
-                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie) VALUES ($nome, $lat, $long, $specie)";
+                $sql = "INSERT INTO AnimaliMarini (Nome, Latitudine, Longitudine, Specie) VALUES ('" . $nome . "', " . $lat . ", " . $long . ", '" . $specie . "')";
             }
         }
 

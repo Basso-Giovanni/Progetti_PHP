@@ -11,10 +11,18 @@
     $db = new Database();
     $animali = $db->getAllAnimaliMarini();
 
-    // if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-    // {
-    //     if ()
-    // }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') 
+    {
+        if (isset($_POST['add']))
+        {
+            $db->addAnimali($_POST['nome'], (float)$_POST['lat'], (float)$_POST['long'], $_POST['specie'], $_POST['desc'], $_POST['data']);
+            echo "Nuovo animale inserito: " . $_POST['nome'];
+        }
+        elseif (isset($_POST['update']))
+        {
+
+        }
+    }
 
     //TODO: Aggiungere il codice per aggiungere l'animale, Aggiungere il codice di Database.php per modificare l'ultimo avvistamento
 
@@ -33,7 +41,7 @@
 <body>
   <div class="container">
     <h1>Nuovo animale</h1>
-    <form>
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <label for="nome">Nome</label>
         <input type="text" name="nome" id="nome" required><br>
         <label for="lat">Latitudine (max 10 cifre di cui 7 decimali)</label>
@@ -48,8 +56,8 @@
         <label for="long">Longitudine (max 10 cifre di cui 7 decimali)</label>
         <input 
             type="number" 
-            id="lat" 
-            name="lat" 
+            id="long" 
+            name="long" 
             step="0.0000001" 
             max="999.9999999" 
             required
@@ -63,7 +71,7 @@
         <input type="submit" name="add" value="Aggiungi">
     </form>
     <h1>Aggiungi avvistamento</h1>
-    <form>
+    <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
         <label>Seleziona l'animale</label>
         <select>
             <?php
