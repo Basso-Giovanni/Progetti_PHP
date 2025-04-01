@@ -24,6 +24,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             break;
     }
 }
+function mostraTabella($pdo, $tabella) {
+    $stmt = $pdo->query("SELECT * FROM $tabella");
+    $righe = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo "<h2>Tabella: $tabella</h2>";
+    echo "<table border='1'><tr>";
+    
+    if (!empty($righe)) {
+        foreach (array_keys($righe[0]) as $colonna) {
+            echo "<th>$colonna</th>";
+        }
+        echo "</tr>";
+        
+        foreach ($righe as $riga) {
+            echo "<tr>";
+            foreach ($riga as $valore) {
+                echo "<td>$valore</td>";
+            }
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='100%'>Nessun dato presente</td></tr>";
+    }
+    
+    echo "</table>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,5 +90,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Data Partenza Effettiva: <input type="datetime-local" name="data_partenza_effettiva" required><br>
         <button type="submit">Registra Partenza</button>
     </form>
+    <h2>Visualizza Tabelle</h2>
+    <form method="get">
+        <select name="tabella">
+            <option value="Navi">Navi</option>
+            <option value="Prodotti">Prodotti</option>
+            <option value="OperazioniCaricoScarico">Operazioni Carico/Scarico</option>
+        </select>
+        <button type="submit">Mostra</button>
+    </form>
+    
+    <?php
+    if (isset($_GET["tabella"])) {
+        mostraTabella($pdo, $_GET["tabella"]);
+    }
+    ?>
 </body>
 </html>
